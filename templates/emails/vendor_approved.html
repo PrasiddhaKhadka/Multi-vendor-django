@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vendor Account Approved</title>
+</head>
+<body>
+    <h2>Congratulations! Your Vendor Account Has Been Approved</h2>
+    
+    <p>Dear {{ vendor.vendor_name }},</p>
+    
+    <p>We're excited to inform you that your vendor account has been approved!</p>
+    
+    <div style="background-color: #f0f8f0; padding: 15px; margin: 10px 0; border-left: 4px solid #4CAF50;">
+        <h3>✅ Account Status: APPROVED</h3>
+        <p><strong>Vendor Name:</strong> {{ vendor.vendor_name }}</p>
+        <p><strong>Email:</strong> {{ vendor_user.email }}</p>
+        <p><strong>Approval Date:</strong> {{ vendor.modified_at }}</p>
+    </div>
+    
+    <p>You can now access all vendor features and start managing your business on our platform.</p>
+    
+    <p><a href="http://yoursite.com/vendor/dashboard" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Access Vendor Dashboard</a></p>
+    
+    <p>If you have any questions, please don't hesitate to contact our support team.</p>
+    
+    <p>Welcome aboard!<br>Your Website Team</p>
+</body>
+</html>

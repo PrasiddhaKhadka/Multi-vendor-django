@@ -1,0 +1,19 @@
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .models import Vendor
+
+# Signal to notify admin when vendor registers
+@receiver(post_save, sender=Vendor)
+def vendor_register_notification_to_admin(sender, instance, created, *args, **kwargs):
+    if created:
+        from utils.email_utils import send_vendor_registration_notification_to_admin
+        send_vendor_registration_notification_to_admin(instance)
+
+@receiver(post_save, sender=Vendor)
+def vendor_register_notification_to_customer(sender, instance, created, *args, **kwargs):
+    if not created:
+        # Check if is_approved field has changed
+        if instance.tracker.has_changed('is_approved') and instance.is_approved:
+            # Import here to avoid circular imports
+            from utils.email_utils import send_vendor_approval_notification
+            send_vendor_approval_notification(instance, approved=True)
